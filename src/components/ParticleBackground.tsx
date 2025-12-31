@@ -2,25 +2,27 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const ParticleBackground = () => {
+  // Reduced particles for better performance
   const particles = useMemo(() => {
-    return Array.from({ length: 50 }, (_, i) => ({
+    return Array.from({ length: 30 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 4 + 1,
-      duration: Math.random() * 10 + 10,
+      size: Math.random() * 3 + 1,
+      duration: Math.random() * 10 + 15,
       delay: Math.random() * 5,
       type: Math.random() > 0.7 ? "star" : "dot",
     }));
   }, []);
 
+  // Reduced floating emojis
   const floatingEmojis = useMemo(() => {
-    const emojis = ["⭐", "✨", "🌟", "💫"];
-    return Array.from({ length: 8 }, (_, i) => ({
+    const emojis = ["⭐", "✨", "🌟", "💫", "🎉", "🎊"];
+    return Array.from({ length: 6 }, (_, i) => ({
       id: i,
       emoji: emojis[i % emojis.length],
       x: Math.random() * 100,
-      duration: Math.random() * 15 + 15,
+      duration: Math.random() * 20 + 20,
       delay: Math.random() * 10,
     }));
   }, []);
@@ -30,7 +32,7 @@ const ParticleBackground = () => {
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
-      {/* Particles */}
+      {/* Particles - will-change for GPU acceleration */}
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
@@ -42,10 +44,11 @@ const ParticleBackground = () => {
             top: `${particle.y}%`,
             width: particle.size,
             height: particle.size,
+            willChange: "transform, opacity",
           }}
           animate={{
-            opacity: [0.2, 1, 0.2],
-            scale: [1, 1.5, 1],
+            opacity: [0.2, 0.8, 0.2],
+            scale: [1, 1.3, 1],
           }}
           transition={{
             duration: particle.duration,
@@ -56,43 +59,34 @@ const ParticleBackground = () => {
         />
       ))}
 
-      {/* Floating emojis */}
-      {floatingEmojis.map((item) => (
-        <motion.div
-          key={item.id}
-          className="absolute text-2xl opacity-30"
-          style={{ left: `${item.x}%` }}
-          initial={{ y: "100vh" }}
-          animate={{ y: "-100px" }}
-          transition={{
-            duration: item.duration,
-            repeat: Infinity,
-            delay: item.delay,
-            ease: "linear",
-          }}
-        >
-          {item.emoji}
-        </motion.div>
-      ))}
+      {/* Floating emojis - hidden on mobile for performance */}
+      <div className="hidden sm:block">
+        {floatingEmojis.map((item) => (
+          <motion.div
+            key={item.id}
+            className="absolute text-xl sm:text-2xl opacity-20"
+            style={{ left: `${item.x}%`, willChange: "transform" }}
+            initial={{ y: "100vh" }}
+            animate={{ y: "-100px" }}
+            transition={{
+              duration: item.duration,
+              repeat: Infinity,
+              delay: item.delay,
+              ease: "linear",
+            }}
+          >
+            {item.emoji}
+          </motion.div>
+        ))}
+      </div>
 
-      {/* Large glow orbs */}
+      {/* Large glow orbs - simplified */}
       <motion.div
-        className="absolute top-1/4 -left-20 w-80 h-80 bg-primary/10 rounded-full blur-[120px]"
+        className="absolute top-1/4 -left-10 sm:-left-20 w-40 sm:w-80 h-40 sm:h-80 bg-primary/10 rounded-full blur-[80px] sm:blur-[120px]"
+        style={{ willChange: "transform, opacity" }}
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 -right-20 w-80 h-80 bg-accent/10 rounded-full blur-[120px]"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.4, 0.3],
         }}
         transition={{
           duration: 10,
@@ -101,9 +95,11 @@ const ParticleBackground = () => {
         }}
       />
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-[150px]"
+        className="absolute bottom-1/4 -right-10 sm:-right-20 w-40 sm:w-80 h-40 sm:h-80 bg-accent/10 rounded-full blur-[80px] sm:blur-[120px]"
+        style={{ willChange: "transform, opacity" }}
         animate={{
-          scale: [1, 1.1, 1],
+          scale: [1.1, 1, 1.1],
+          opacity: [0.3, 0.4, 0.3],
         }}
         transition={{
           duration: 12,
