@@ -6,37 +6,30 @@ import ParticleBackground from "@/components/ParticleBackground";
 import MusicPlayer from "@/components/MusicPlayer";
 
 const Index = () => {
+  const [initialName, setInitialName] = useState<string>("");
   const [userName, setUserName] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Scroll to top on page load
     window.scrollTo(0, 0);
-    
-    // Check URL for name parameter
+
     const params = new URLSearchParams(window.location.search);
     const nameFromUrl = params.get("name");
-    
     if (nameFromUrl) {
-      setUserName(decodeURIComponent(nameFromUrl));
+      setInitialName(decodeURIComponent(nameFromUrl));
     }
-    
+
     setIsLoading(false);
   }, []);
 
-  // Scroll to top when userName changes
   useEffect(() => {
-    if (userName) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    if (userName) window.scrollTo({ top: 0, behavior: "smooth" });
   }, [userName]);
 
   const handleNameSubmit = (name: string) => {
-    // Update URL with name parameter
     const newUrl = `${window.location.pathname}?name=${encodeURIComponent(name)}`;
     window.history.pushState({}, "", newUrl);
     setUserName(name);
-    // Scroll to top after submission
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -55,7 +48,7 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       <ParticleBackground />
-      
+
       <AnimatePresence mode="wait">
         {userName ? (
           <motion.div
@@ -76,7 +69,7 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <WelcomeForm onSubmit={handleNameSubmit} />
+            <WelcomeForm initialName={initialName} onSubmit={handleNameSubmit} />
           </motion.div>
         )}
       </AnimatePresence>

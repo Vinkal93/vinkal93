@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, PartyPopper, Gift, Star } from "lucide-react";
 import { toast } from "sonner";
 
 interface WelcomeFormProps {
   onSubmit: (name: string) => void;
+  initialName?: string;
 }
 
-const WelcomeForm = ({ onSubmit }: WelcomeFormProps) => {
-  const [name, setName] = useState("");
+const WelcomeForm = ({ onSubmit, initialName }: WelcomeFormProps) => {
+  const [name, setName] = useState(initialName ?? "");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (initialName) setName(initialName);
+  }, [initialName]);
 
   const validateName = (value: string): boolean => {
     const trimmed = value.trim();
