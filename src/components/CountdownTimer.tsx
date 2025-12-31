@@ -41,31 +41,32 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate]);
 
   const timeUnits = [
-    { value: timeLeft.days, label: "Days" },
-    { value: timeLeft.hours, label: "Hours" },
-    { value: timeLeft.minutes, label: "Minutes" },
-    { value: timeLeft.seconds, label: "Seconds" },
+    { value: timeLeft.days, label: "Days", emoji: "📅" },
+    { value: timeLeft.hours, label: "Hours", emoji: "⏰" },
+    { value: timeLeft.minutes, label: "Mins", emoji: "⏳" },
+    { value: timeLeft.seconds, label: "Secs", emoji: "✨" },
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-3 md:gap-6">
+    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-6">
       {timeUnits.map((unit, index) => (
         <motion.div
           key={unit.label}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className="glass-card p-4 md:p-6 min-w-[70px] md:min-w-[100px] text-center animate-pulse-glow"
+          className="glass-card p-3 sm:p-4 md:p-6 min-w-[60px] sm:min-w-[70px] md:min-w-[100px] text-center animate-pulse-glow"
         >
+          <span className="text-sm sm:text-base mb-1 block">{unit.emoji}</span>
           <motion.span
             key={unit.value}
             initial={{ scale: 1.2 }}
             animate={{ scale: 1 }}
-            className="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-primary glow-text-gold block"
+            className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-display font-bold text-primary glow-text-gold block"
           >
             {String(unit.value).padStart(2, "0")}
           </motion.span>
-          <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider mt-2 block">
+          <span className="text-[10px] sm:text-xs md:text-sm text-muted-foreground uppercase tracking-wider mt-1 sm:mt-2 block">
             {unit.label}
           </span>
         </motion.div>
