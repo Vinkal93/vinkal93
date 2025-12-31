@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import CountdownTimer from "./CountdownTimer";
 import WishQuotes from "./WishQuotes";
-import SocialShare from "./SocialShare";
+import InviteSection from "./InviteSection";
 import Footer from "./Footer";
 import { Sparkles, Heart, Star, Gift, Rocket, Crown, Gem } from "lucide-react";
 
@@ -304,35 +304,10 @@ const PersonalizedWish = ({ name }: PersonalizedWishProps) => {
             </div>
           </section>
 
-          {/* Share Section - responsive */}
+          {/* Invite Section - responsive */}
           <section className="py-12 sm:py-20 px-4 sm:px-6">
-            <div className="max-w-2xl mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="glass-card p-6 sm:p-8 md:p-12"
-              >
-                <div className="flex justify-center gap-2 mb-3 sm:mb-4">
-                  {["🎉", "💕", "🌟"].map((emoji, i) => (
-                    <motion.span
-                      key={i}
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                      className="text-2xl sm:text-3xl"
-                    >
-                      {emoji}
-                    </motion.span>
-                  ))}
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-bold mb-2 sm:mb-4 text-gradient-gold">
-                  Invite Your Friends! 🎊
-                </h2>
-                <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-                  Create personalized wishes for your friends and family too!
-                </p>
-                <SocialShare userName={name} />
-              </motion.div>
+            <div className="max-w-lg mx-auto">
+              <InviteSection userName={name} />
             </div>
           </section>
 
