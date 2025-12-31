@@ -1,12 +1,83 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import HeroSection from "@/components/HeroSection";
+import NamePopup from "@/components/NamePopup";
+import PersonalizedWish from "@/components/PersonalizedWish";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+  const [showPopup, setShowPopup] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check URL for name parameter
+    const params = new URLSearchParams(window.location.search);
+    const nameFromUrl = params.get("name");
+    
+    if (nameFromUrl) {
+      setUserName(decodeURIComponent(nameFromUrl));
+    }
+    
+    setIsLoading(false);
+  }, []);
+
+  const handleNameSubmit = (name: string) => {
+    // Update URL with name parameter
+    const newUrl = `${window.location.pathname}?name=${encodeURIComponent(name)}`;
+    window.history.pushState({}, "", newUrl);
+    setUserName(name);
+    setShowPopup(false);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full"
+        />
       </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen relative overflow-hidden">
+      <ParticleBackground />
+      
+      <AnimatePresence mode="wait">
+        {userName ? (
+          <motion.div
+            key="personalized"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <PersonalizedWish name={userName} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="hero"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <HeroSection onStartClick={() => setShowPopup(true)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showPopup && (
+          <NamePopup
+            onSubmit={handleNameSubmit}
+            onClose={() => setShowPopup(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
