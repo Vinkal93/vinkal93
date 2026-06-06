@@ -1,73 +1,80 @@
-# Welcome to your Lovable project
+# 👋 Hi, I'm Vinkal Prajapati
 
-## Project info
+🚀 Founder of SBCI Computer Institute  
+💻 Full Stack Developer  
+🏫 Building Next-Generation Education ERP Systems  
+🤖 Exploring AI, Automation & SaaS Products
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🌟 About Me
 
-There are several ways of editing your application.
+I am passionate about building technology that solves real-world problems.
 
-**Use Lovable**
+Currently focused on:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+🎓 Education Technology  
+🏫 School & Institute ERP Systems  
+🤖 AI-Powered Applications  
+📈 SaaS Products  
+⚡ Business Automation
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠️ Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Frontend
+⚛️ React.js  
+▲ Next.js  
+🎨 Tailwind CSS  
+📘 TypeScript
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Backend
+🟢 Node.js  
+🔥 Firebase  
+🚀 Express.js
 
-Follow these steps:
+### Cloud & Deployment
+▲ Vercel  
+🐳 Docker  
+🔧 GitHub Actions
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🚀 Featured Projects
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 🏫 SBCI ERP Platform
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+A complete educational management ecosystem featuring:
 
-**Edit a file directly in GitHub**
+✅ Student Management  
+✅ Fee Management  
+✅ Attendance Tracking  
+✅ Staff Management  
+✅ Exam Management  
+✅ Reports & Analytics  
+✅ Multi-Institute SaaS Architecture
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 📊 Current Goals
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+🎯 Build India's Best Education ERP Platform
 
-## What technologies are used for this project?
+🎯 Scale SBCI Software Nationwide
 
-This project is built with:
+🎯 Develop AI-Powered Educational Tools
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 📫 Connect With Me
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+🌐 Website: https://sbci.vercel.app
 
-## Can I connect a custom domain to my Lovable project?
+📧 Business Inquiries: your-email@example.com
 
-Yes, you can!
+💼 Open for Collaboration & Partnerships
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+⭐ Building technology that creates real-world impact.
